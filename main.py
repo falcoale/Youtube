@@ -5,9 +5,10 @@ import requests
 import sys
 
 print(f"Inserisci il link del video")
+link = input(">> ")
 
 # Chiedi il link del video
-yt = YouTube(input(">> ")) 
+yt = YouTube(link) 
 
 # Funzione per prendere le info del video
 def info():
@@ -27,6 +28,7 @@ def info():
 
     with open(f"Video Info {yt.video_id}.json", "w") as infofile:
         infofile.write(json_object)
+
 
 # Dai la possibilità di scaricare la thumb
 def thumb():
