@@ -20,6 +20,7 @@ def info():
         # La descrizione del video attraverso PyTube non è possibile scriverla
         # "Descrizione": f"{yt.description}",
         "Visualizzazioni": f"{yt.views}",
+        "Data di pubblicazione": f"{yt.publish_date}",
     }
 
     json_object =  json.dumps(infos, indent=3)
