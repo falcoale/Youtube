@@ -27,12 +27,15 @@ def thumb():
     
     # If che gestisce la scelta
     if scelta == 1:
+        # Se si verifica ciò salvi la thumb con il nome di "thumb + yt.video_id.jpg" es. thumb gEWUoZy69FE.jpg
         url = yt.thumbnail_url
         r = requests.get(url, allow_redirects=True)
-        open('thumb.jpg', 'wb').write(r.content)
+        open(f"thumb {yt.video_id}.jpg", 'wb').write(r.content)
     elif scelta == 2:
+        # Se la scelta è la seconda chiudi il programma
         sys.exit(0)
     else:
+        # Altrimenti richiedi
         print(f"La tua scelta ({scelta}), non può essere presa in considerazione. Riprova tra due secondi.")
         time.sleep(2)
         thumb()
