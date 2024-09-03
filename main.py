@@ -1,16 +1,31 @@
 from pytube import YouTube
 import time
-import os
+import json
 import requests
 import sys
 
 print(f"Inserisci il link del video")
 
 # Chiedi il link del video
-yt = YouTube(input(f">> ")) 
+yt = YouTube(input(">> ")) 
 
-# Stampi il titolo del video
-print(f"Il titolo del video è: {yt.title}")
+# Funzione per prendere le info del video
+def info():
+    infos = {
+        "Link Video": f"https://www.youtube.com/watch?v={yt.video_id}",
+        "Autore": f"{yt.author}",
+        "Link Canale": f"{yt.channel_url}",
+        "Iscriviti direttamente": f"{yt.channel_url}?sub_confirmation=1",
+        "Titolo": f"{yt.title}",
+        # La descrizione del video attraverso PyTube non è possibile scriverla
+        # "Descrizione": f"{yt.description}",
+        "Visualizzazioni": f"{yt.views}",
+    }
+
+    json_object =  json.dumps(infos, indent=3)
+
+    with open(f"Video Info {yt.video_id}.json", "w") as infofile:
+        infofile.write(json_object)
 
 # Dai la possibilità di scaricare la thumb
 def thumb():
@@ -41,4 +56,5 @@ def thumb():
         thumb()
 
 
+info()
 thumb()
